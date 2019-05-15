@@ -40,6 +40,9 @@ function main() {
 	let html = fs.readFileSync('index.html', 'utf-8')
 	html = replaceTag(html, 'title', fname)
 	html = replaceTag(html, 'content', marked(md))
+	let css = fs.readFileSync('css/modest.css') + '\n' +
+		fs.readFileSync('css/style.css')
+	html = replaceTag(html, 'css', css)
 	openHtml(html, fname)
 }
 

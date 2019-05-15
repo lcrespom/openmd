@@ -5,11 +5,37 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>{{title}}</title>
-	<link rel="stylesheet" href="css/modest.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/monokai-sublime.min.css">
-	<script src="highlight.min.js"></script>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/monokai-sublime.min.css">
+	<link rel="stylesheet" href="http://markdowncss.github.io/modest/css/modest.css">
+	<style>
+		pre {
+			background-color: #272822;
+			color: #ddd;
+			border-radius: 3px;
+			overflow: auto;
+		}
+
+		pre > code {
+			background-color: #272822;
+		}
+
+		img {
+			box-shadow: 5px 5px 10px 0px #999;
+			border-radius: 3px;
+		}
+
+		h1 {
+			border-bottom-color: #fff;
+		}
+
+		h2, h3 {
+			text-align: initial;
+			border-bottom-color: #eee;
+		}
+	</style>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 </head>
+
 <body>
 	<div id="mdcontent">
 		{{content}}
