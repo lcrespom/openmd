@@ -1,0 +1,22 @@
+{
+  "name": "openmd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "openmd.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lcrespom/openmd.git"
+  },
+  "keywords": [
+    "markdown"
+  ],
+  "author": "Luis Crespo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lcrespom/openmd/issues"
+  },
+  "homepage": "https://github.com/lcrespom/openmd#readme",
+  "dependencies": {
+    "marked": "^0.6.2"
+  }
+}
