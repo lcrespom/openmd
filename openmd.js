@@ -1,8 +1,12 @@
 const fs = require('fs')
+const os = require('os')
 const path = require('path')
-const marked = require('marked')
 
-function loadMD() {
+const marked = require('marked')
+const open = require('open')
+
+
+function loadInputFile() {
 	if (process.argv.length < 3) {
 		console.log('Missing file name')
 		process.exit(1)
@@ -25,12 +29,19 @@ function replaceTag(text, tag, value) {
 	return result.join('\n')
 }
 
+function openHtml(html, fname) {
+	let oname = path.join(os.tmpdir(), fname + '.html')
+	fs.writeFileSync(oname, html)
+	open('file://' + oname)
+}
+
 function main() {
-	let [fname, md] = loadMD()
+	let [fname, md] = loadInputFile()
 	let html = fs.readFileSync('index.html', 'utf-8')
 	html = replaceTag(html, 'title', fname)
 	html = replaceTag(html, 'content', marked(md))
-	console.log(html)
+	openHtml(html, fname)
 }
+
 
 main()
