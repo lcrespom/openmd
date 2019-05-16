@@ -8,7 +8,7 @@ const open = require('open')
 
 function loadInputFile() {
 	if (process.argv.length < 3) {
-		console.log('Missing file name')
+		showUsage()
 		process.exit(1)
 	}
 	let fname = process.argv[2]
@@ -21,12 +21,20 @@ function loadInputFile() {
 	}
 }
 
+function showUsage() {
+	console.log(`Usage:
+  node openmd [filename.md] [theme]
+    filename.md - mandatory - the markdown file to display.
+    theme - optional - the look & feel
+      Can use 'splendor', 'retro', 'air' and 'modest'. Defaults to 'modest'.`)
+}
+
+function getTheme() {
+	return process.argv[3] || 'modest'
+}
+
 function replaceTag(text, tag, value) {
-	let result = []
-	for (let line of text.split('\n')) {
-		result.push(line.replace(`{{${tag}}}`, value))
-	}
-	return result.join('\n')
+	return text.replace(new RegExp(`{{${tag}}}`, 'g'), value)
 }
 
 function openHtml(html, fname) {
@@ -40,6 +48,7 @@ function main() {
 	let html = fs.readFileSync('index.html', 'utf-8')
 	html = replaceTag(html, 'title', fname)
 	html = replaceTag(html, 'content', marked(md))
+	html = replaceTag(html, 'theme', getTheme())
 	openHtml(html, fname)
 }
 

@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title>{{title}}</title>
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/monokai-sublime.min.css">
-	<link rel="stylesheet" href="http://markdowncss.github.io/modest/css/modest.css">
+	<link rel="stylesheet" href="http://markdowncss.github.io/{{theme}}/css/{{theme}}.css">
 	<style>
 		pre {
 			background-color: #272822;
@@ -44,6 +44,14 @@
 	<script>
 		(function () {
 			let codeNodes = document.querySelectorAll('code[class^=language-]')
+			for (let cnode of codeNodes) {
+				for (let cname of cnode.classList) {
+					if (cname.startsWith('language-')) {
+						cnode.classList.add(cname.substr(9))
+						hljs.highlightBlock(cnode)
+					}
+				}
+			}
 		})()
 	</script>
 </body>
