@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -23,7 +24,7 @@ function loadInputFile() {
 
 function showUsage() {
 	console.log(`Usage:
-  node openmd [filename.md] [theme]
+  openmd.js [filename.md] [theme]
     filename.md - mandatory - the markdown file to display.
     theme - optional - the look & feel
       Can use 'splendor', 'retro', 'air' and 'modest'. Defaults to 'modest'.`)
@@ -45,7 +46,8 @@ function openHtml(html, fname) {
 
 function main() {
 	let [fname, md] = loadInputFile()
-	let html = fs.readFileSync('index.html', 'utf-8')
+	let hname = path.join(__dirname, 'index.html')
+	let html = fs.readFileSync(hname, 'utf-8')
 	html = replaceTag(html, 'title', fname)
 	html = replaceTag(html, 'content', marked(md))
 	html = replaceTag(html, 'theme', getTheme())
